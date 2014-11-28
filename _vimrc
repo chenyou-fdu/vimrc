@@ -4,7 +4,7 @@
 " -----------------    https://github.com/ruchee/vimrc
 
 
-
+" 去掉了自动匹配括号等，C-R为编译，去掉了Wiki内容，去掉了一些atCompany配置,把工具栏等显示了 by ChenYou
 " 判断工作地点，根据指定路径的文件是否存在判断
 " （仅为我个人所用，如无工作场所切换需求，可将本文件所有 atCompany 相关的判断语句全部去掉）
 if filereadable("~/.atCompany") || filereadable("C:/atCompany.txt")
@@ -14,14 +14,14 @@ else
 endif
 
 " 针对不同的使用环境进行具体配置
-if g:atCompany
-    set tags+=D:/Ruchee/Files/code/5399/trunk/manage.5399.com/new/tags
+"if g:atCompany
+"    set tags+=D:/Ruchee/Files/code/5399/trunk/manage.5399.com/new/tags
     " set tags+=D:/Ruchee/Ruby/lib/ruby/tags
     " set tags+=D:/Ruchee/Ruby/lib/ruby/gems/2.1.0/tags
-else
+"else
     " set tags+=~/.rvm/rubies/ruby-2.1.5/tags
     " set tags+=~/.rvm/gems/ruby-2.1.5/tags
-endif
+"endif
 
 
 " ---------- Ctrl系按键 ----------
@@ -242,7 +242,7 @@ if g:isWIN
             set guifont=Monaco:h12
         else
             colorscheme molokai
-            set guifont=Monaco:h11
+            set guifont=Monaco:h10
         endif
     endif
 else
@@ -312,11 +312,11 @@ if g:isGUI
     "winpos 20 20            " 指定窗口出现的位置，坐标原点在屏幕左上角
     "set lines=20 columns=90 " 指定窗口大小，lines为高度，columns为宽度
     set guioptions+=c        " 使用字符提示框
-    set guioptions-=m        " 隐藏菜单栏
-    set guioptions-=T        " 隐藏工具栏
+    "set guioptions-=m        " 隐藏菜单栏
+    "set guioptions-=T        " 隐藏工具栏
     set guioptions-=L        " 隐藏左侧滚动条
-    set guioptions-=r        " 隐藏右侧滚动条
-    set guioptions-=b        " 隐藏底部滚动条
+    "set guioptions-=r        " 隐藏右侧滚动条
+    "set guioptions-=b        " 隐藏底部滚动条
     set showtabline=0        " 隐藏Tab栏
     set cursorline           " 突出显示当前行
 endif
@@ -324,15 +324,15 @@ endif
 
 " ======= 引号 && 括号自动匹配 ======= "
 
-:inoremap ( ()<ESC>i
-:inoremap ) <c-r>=ClosePair(')')<CR>
-:inoremap { {}<ESC>i
-:inoremap } <c-r>=ClosePair('}')<CR>
-:inoremap [ []<ESC>i
-:inoremap ] <c-r>=ClosePair(']')<CR>
-:inoremap " ""<ESC>i
-:inoremap ' ''<ESC>i
-:inoremap ` ``<ESC>i
+":inoremap ( ()<ESC>i
+":inoremap ) <c-r>=ClosePair(')')<CR>
+":inoremap { {}<ESC>i
+":inoremap } <c-r>=ClosePair('}')<CR>
+":inoremap [ []<ESC>i
+":inoremap ] <c-r>=ClosePair(']')<CR>
+":inoremap " ""<ESC>i
+":inoremap ' ''<ESC>i
+":inoremap ` ``<ESC>i
 
 function ClosePair(char)
     if getline('.')[col('.') - 1] == a:char
@@ -530,9 +530,9 @@ let g:snipMate.scope_aliases['xhtml']      = 'html'
 let NERDSpaceDelims = 1                        " 自动添加前置空格
 
 " AuthorInfoDetect    自动添加作者、时间等信息，本质是NERD_commenter && authorinfo的结合
-let g:vimrc_author   = 'Ruchee'                " 昵称
-let g:vimrc_email    = 'my@ruchee.com'         " 邮箱
-let g:vimrc_homepage = 'http://www.ruchee.com' " 个人主页
+let g:vimrc_author='ChenYou'
+let g:vimrc_email='chenyou.fudan@gmail.com'
+let g:vimrc_homepage=''
 
 " Indent_guides       显示对齐线
 let g:indent_guides_enable_on_vim_startup = 0  " 默认关闭
@@ -800,9 +800,12 @@ func! Compile_Run_Code()
 endfunc
 
 " \R         一键保存、编译、运行
-imap <leader>R <ESC>:call Compile_Run_Code()<CR>
-nmap <leader>R :call Compile_Run_Code()<CR>
-vmap <leader>R <ESC>:call Compile_Run_Code()<CR>
+"imap <leader>R <ESC>:call Compile_Run_Code()<CR>
+"nmap <leader>R :call Compile_Run_Code()<CR>
+"vmap <leader>R <ESC>:call Compile_Run_Code()<CR>
+imap <c-r> <ESC>:call Compile_Run_Code()<CR>
+nmap <c-r> :call Compile_Run_Code()<CR>
+vmap <c-r> <ESC>:call Compile_Run_Code()<CR>
 
 " \T         一键加载语法模板
 imap <leader>T <ESC>:LoadTemplate<CR><ESC>:AuthorInfoDetect<CR><ESC>Gi
@@ -812,34 +815,34 @@ vmap <leader>T <ESC>:LoadTemplate<CR><ESC>:AuthorInfoDetect<CR><ESC>Gi
 
 " ======= Vimwiki ======= "
 
-let g:vimwiki_w32_dir_enc     = 'utf-8' " 设置编码
-let g:vimwiki_use_mouse       = 1       " 使用鼠标映射
+"let g:vimwiki_w32_dir_enc     = 'utf-8' " 设置编码
+"let g:vimwiki_use_mouse       = 1       " 使用鼠标映射
 " 声明可以在 wiki 里面使用的 HTML 标签
-let g:vimwiki_valid_html_tags = 'p,a,img,b,i,s,u,sub,sup,br,hr,div,del,code,red,center,left,right,h1,h2,h3,h4,h5,h6,pre,code,script,style,span'
+"let g:vimwiki_valid_html_tags = 'p,a,img,b,i,s,u,sub,sup,br,hr,div,del,code,red,center,left,right,h1,h2,h3,h4,h5,h6,pre,code,script,style,span'
 
-let blog = {}
-if g:atCompany
-    if g:isWIN
-        let blog.path          = 'D:/Ruchee/Files/mysite/wiki/'
-        let blog.path_html     = 'D:/Ruchee/Files/mysite/html/'
-        let blog.template_path = 'D:/Ruchee/Files/mysite/templates/'
-    endif
-else
-    if g:isWIN
-        let blog.path          = 'D:/Ruchee/Files/mysite/wiki/'
-        let blog.path_html     = 'D:/Ruchee/Files/mysite/html/'
-        let blog.template_path = 'D:/Ruchee/Files/mysite/templates/'
-    else
-        let blog.path          = '~/mysite/wiki/'
-        let blog.path_html     = '~/mysite/html/'
-        let blog.template_path = '~/mysite/templates/'
-    endif
-endif
-let blog.template_default = 'site'
-let blog.template_ext     = '.html'
-let blog.auto_export      = 1
+"let blog = {}
+"if g:atCompany
+"    if g:isWIN
+"        let blog.path          = 'D:/Ruchee/Files/mysite/wiki/'
+"        let blog.path_html     = 'D:/Ruchee/Files/mysite/html/'
+"        let blog.template_path = 'D:/Ruchee/Files/mysite/templates/'
+"    endif
+"else
+"    if g:isWIN
+"        let blog.path          = 'D:/Ruchee/Files/mysite/wiki/'
+"        let blog.path_html     = 'D:/Ruchee/Files/mysite/html/'
+"        let blog.template_path = 'D:/Ruchee/Files/mysite/templates/'
+"    else
+"        let blog.path          = '~/mysite/wiki/'
+"        let blog.path_html     = '~/mysite/html/'
+"        let blog.template_path = '~/mysite/templates/'
+"    endif
+"endif
+"let blog.template_default = 'site'
+"let blog.template_ext     = '.html'
+"let blog.auto_export      = 1
 
 " 声明可以在 wiki 里面高亮的程序语言，键为调用名，值为该语言在 Vim 里面实际的语法名
-let blog.nested_syntaxes  = {'Asm': 'asm', 'Clang': 'c', 'C++': 'cpp', 'Dlang': 'd', 'Go': 'go', 'Java': 'java', 'Groovy': 'groovy', 'Scala': 'scala', 'Clojure': 'clojure', 'C#': 'cs', 'F#': 'fsharp', 'Erlang': 'erlang', 'Scheme': 'scheme', 'Racket': 'racket', 'Lisp': 'lisp', 'Ocaml': 'ocaml', 'Haskell': 'haskell', 'Lua': 'lua', 'Perl': 'perl', 'PHP': 'php', 'Python': 'python', 'Ruby': 'ruby', 'Elixir': 'elixir', 'Julia': 'julia', 'Dart': 'dart', 'Haxe': 'haxe', 'Rlang': 'r', 'Coffee': 'coffee', 'LiveScript': 'ls', 'TypeScript': 'typescript', 'JavaScript': 'javascript', 'Bash': 'sh', 'Sed': 'sed', 'Bat': 'dosbatch', 'HTML': 'html', 'CSS': 'css', 'Apache': 'apache', 'Nginx': 'nginx'}
+"let blog.nested_syntaxes  = {'Asm': 'asm', 'Clang': 'c', 'C++': 'cpp', 'Dlang': 'd', 'Go': 'go', 'Java': 'java', 'Groovy': 'groovy', 'Scala': 'scala', 'Clojure': 'clojure', 'C#': 'cs', 'F#': 'fsharp', 'Erlang': 'erlang', 'Scheme': 'scheme', 'Racket': 'racket', 'Lisp': 'lisp', 'Ocaml': 'ocaml', 'Haskell': 'haskell', 'Lua': 'lua', 'Perl': 'perl', 'PHP': 'php', 'Python': 'python', 'Ruby': 'ruby', 'Elixir': 'elixir', 'Julia': 'julia', 'Dart': 'dart', 'Haxe': 'haxe', 'Rlang': 'r', 'Coffee': 'coffee', 'LiveScript': 'ls', 'TypeScript': 'typescript', 'JavaScript': 'javascript', 'Bash': 'sh', 'Sed': 'sed', 'Bat': 'dosbatch', 'HTML': 'html', 'CSS': 'css', 'Apache': 'apache', 'Nginx': 'nginx'}
 
-let g:vimwiki_list = [blog]
+"let g:vimwiki_list = [blog]
