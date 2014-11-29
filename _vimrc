@@ -4,7 +4,7 @@
 " -----------------    https://github.com/ruchee/vimrc
 
 
-" 去掉了自动匹配括号等，C-R为编译，去掉了Wiki内容，去掉了一些atCompany配置,把工具栏等显示了 by ChenYou
+" 去掉了自动匹配括号等，C-R为编译，去掉了Wiki内容，去掉了一些atCompany配置 by ChenYou
 " 判断工作地点，根据指定路径的文件是否存在判断
 " （仅为我个人所用，如无工作场所切换需求，可将本文件所有 atCompany 相关的判断语句全部去掉）
 if filereadable("~/.atCompany") || filereadable("C:/atCompany.txt")
@@ -803,9 +803,9 @@ endfunc
 "imap <leader>R <ESC>:call Compile_Run_Code()<CR>
 "nmap <leader>R :call Compile_Run_Code()<CR>
 "vmap <leader>R <ESC>:call Compile_Run_Code()<CR>
-imap <c-r> <ESC>:call Compile_Run_Code()<CR>
-nmap <c-r> :call Compile_Run_Code()<CR>
-vmap <c-r> <ESC>:call Compile_Run_Code()<CR>
+imap <c-c> <ESC>:call Compile_Run_Code()<CR>
+nmap <c-c> :call Compile_Run_Code()<CR>
+vmap <c-c> <ESC>:call Compile_Run_Code()<CR>
 
 " \T         一键加载语法模板
 imap <leader>T <ESC>:LoadTemplate<CR><ESC>:AuthorInfoDetect<CR><ESC>Gi
